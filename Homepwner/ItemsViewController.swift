@@ -14,16 +14,21 @@ class ItemsViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemStore.allItems.count
+        return itemStore.allItems.count + 1
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("UITableViewCell", forIndexPath: indexPath)
         
-        let item = itemStore.allItems[indexPath.row]
-        
-        cell.textLabel?.text = item.name
-        cell.detailTextLabel?.text = "\(item.valueInDollars)"
+        if(indexPath.row < itemStore.allItems.count) {
+            let item = itemStore.allItems[indexPath.row]
+            cell.textLabel?.text = item.name
+            cell.detailTextLabel?.text = "\(item.valueInDollars)"
+        }
+        else {
+            cell.textLabel?.text = "No more items!"
+            cell.detailTextLabel?.text = ""
+        }
 
         return cell
     }
@@ -56,7 +61,7 @@ class ItemsViewController: UITableViewController {
             let ac = UIAlertController(title: title, message: message, preferredStyle: .ActionSheet)
             let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
             ac.addAction(cancelAction)
-            let deleteAction = UIAlertAction(title: "Delete", style: .Destructive,
+            let deleteAction = UIAlertAction(title: "Remove", style: .Destructive,
                                              handler: { (action) in
                 self.itemStore.remoteItem(item)
                 self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
@@ -67,7 +72,26 @@ class ItemsViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
-        itemStore.moveItemAtIndex(sourceIndexPath.row, toIndex: destinationIndexPath.row)
+        if (sourceIndexPath.row < itemStore.allItems.count && destinationIndexPath.row < itemStore.allItems.count) {
+            itemStore.moveItemAtIndex(sourceIndexPath.row, toIndex: destinationIndexPath.row)
+        }
     }
-
+    
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return indexPath.row < itemStore.allItems.count;
+    }
+    
+    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return indexPath.row < itemStore.allItems.count;
+    }
+    
+    override func tableView(tableView: UITableView, targetIndexPathForMoveFromRowAtIndexPath sourceIndexPath: NSIndexPath, toProposedIndexPath proposedDestinationIndexPath: NSIndexPath) -> NSIndexPath {
+        if proposedDestinationIndexPath.row < itemStore.allItems.count {
+            return proposedDestinationIndexPath
+        }
+        else {
+            return sourceIndexPath
+        }
+    }
+    
 }
