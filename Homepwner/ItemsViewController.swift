@@ -22,7 +22,7 @@ class ItemsViewController: UITableViewController {
         else {
             return itemStore.allItems.filter({ (item) -> Bool in
                 return item.valueInDollars < 50
-            }).count
+            }).count + 1
         }
     }
     
@@ -43,9 +43,17 @@ class ItemsViewController: UITableViewController {
             });
         }
         
-        let item = items[indexPath.row]
-        cell.textLabel?.text = item.name
-        cell.detailTextLabel?.text = "\(item.valueInDollars)"
+        if(indexPath.row >= items.count) {
+            cell.textLabel?.text = "No more items!"
+            cell.detailTextLabel?.text = ""
+            cell.textLabel?.font = UIFont(name: (cell.textLabel?.font?.fontName)!, size: 20)
+        }
+        else {
+            let item = items[indexPath.row]
+            cell.textLabel?.text = item.name
+            cell.detailTextLabel?.text = "\(item.valueInDollars)"
+            cell.textLabel?.font = UIFont(name: (cell.textLabel?.font?.fontName)!, size: 44)
+        }
 
         return cell
     }
@@ -63,6 +71,20 @@ class ItemsViewController: UITableViewController {
             header.text = "Items under $50"
         }
         return header
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        let height: CGFloat
+        let items = itemStore.allItems.filter({ (item) -> Bool in
+            return item.valueInDollars < 50
+        });
+        if(indexPath.section == 1 && indexPath.row >= items.count) {
+            height = 44
+        }
+        else {
+            height = 60
+        }
+        return height
     }
 
 }
