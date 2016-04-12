@@ -14,18 +14,55 @@ class ItemsViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemStore.allItems.count
+        if(section == 0) {
+            return itemStore.allItems.filter({ (item) -> Bool in
+                return item.valueInDollars >= 50
+            }).count
+        }
+        else {
+            return itemStore.allItems.filter({ (item) -> Bool in
+                return item.valueInDollars < 50
+            }).count
+        }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("UITableViewCell", forIndexPath: indexPath)
         
-        let item = itemStore.allItems[indexPath.row]
+        let items: [Item]
+        if(indexPath.section == 0) {
+            print("Section 1")
+            items = itemStore.allItems.filter({ (item) -> Bool in
+                return item.valueInDollars >= 50
+            });
+        }
+        else {
+            print("Section 2")
+            items = itemStore.allItems.filter({ (item) -> Bool in
+                return item.valueInDollars < 50
+            });
+        }
         
+        let item = items[indexPath.row]
         cell.textLabel?.text = item.name
         cell.detailTextLabel?.text = "\(item.valueInDollars)"
 
         return cell
+    }
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UILabel()
+        if(section == 0) {
+            header.text = "Items over $50"
+        }
+        else {
+            header.text = "Items under $50"
+        }
+        return header
     }
 
 }
