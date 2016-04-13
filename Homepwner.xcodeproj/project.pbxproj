@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5000CD821CBEC12A00A0D520 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5000CD811CBEC12A00A0D520 /* DetailViewController.swift */; };
 		502588B31CBADB4F00BFB633 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502588B21CBADB4F00BFB633 /* AppDelegate.swift */; };
 		502588B81CBADB4F00BFB633 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 502588B61CBADB4F00BFB633 /* Main.storyboard */; };
 		502588BA1CBADB4F00BFB633 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 502588B91CBADB4F00BFB633 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5000CD811CBEC12A00A0D520 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		502588AF1CBADB4E00BFB633 /* Homepwner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homepwner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		502588B21CBADB4F00BFB633 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		502588B71CBADB4F00BFB633 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				502588C61CBB5A2600BFB633 /* Item.swift */,
 				502588C81CBB5CB800BFB633 /* ItemStore.swift */,
 				50E6B3081CBDE21F004705A0 /* ItemCell.swift */,
+				5000CD811CBEC12A00A0D520 /* DetailViewController.swift */,
 			);
 			path = Homepwner;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 				502588C51CBB597B00BFB633 /* ItemsViewController.swift in Sources */,
 				502588C71CBB5A2600BFB633 /* Item.swift in Sources */,
 				502588C91CBB5CB800BFB633 /* ItemStore.swift in Sources */,
+				5000CD821CBEC12A00A0D520 /* DetailViewController.swift in Sources */,
 				502588B31CBADB4F00BFB633 /* AppDelegate.swift in Sources */,
 				50E6B3091CBDE21F004705A0 /* ItemCell.swift in Sources */,
 			);
