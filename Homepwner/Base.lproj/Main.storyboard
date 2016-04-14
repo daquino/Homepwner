@@ -178,6 +178,11 @@
                                             <action selector="takePicture:" destination="zSG-82-TZ1" id="pSb-2v-Qjs"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem systemItem="trash" id="Frw-Ug-gUN">
+                                        <connections>
+                                            <action selector="deletePicture:" destination="zSG-82-TZ1" id="5sh-dr-ONE"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>

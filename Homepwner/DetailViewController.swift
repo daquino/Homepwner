@@ -81,4 +81,9 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         imageStore.setImage(image, forKey: item.itemKey)
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    @IBAction func deletePicture(sender: UIBarButtonItem) {
+        self.imageView.image = nil
+        imageStore.deleteImageForKey(item.itemKey)
+    }
 }
