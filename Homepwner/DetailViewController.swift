@@ -68,6 +68,9 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         imagePicker.allowsEditing = true
         if UIImagePickerController.isSourceTypeAvailable(.Camera) {
             imagePicker.sourceType = .Camera
+            let frame = CGRectMake(imagePicker.view.frame.origin.x, imagePicker.view.frame.origin.y, imagePicker.view.frame.size.width, imagePicker.view.frame.size.height)
+            let crosshair = CrossHair(frame: frame)
+            imagePicker.cameraOverlayView = crosshair
         }
         else {
             imagePicker.sourceType = .PhotoLibrary
