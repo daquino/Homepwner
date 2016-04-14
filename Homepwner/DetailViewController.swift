@@ -1,12 +1,16 @@
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var serialField: UITextField!
     @IBOutlet weak var valueField: UITextField!
     @IBOutlet weak var dateLabel: UILabel!
-    var item: Item!
+    var item: Item! {
+        didSet {
+            navigationItem.title = item.name
+        }
+    }
     let numberFormatter: NSNumberFormatter = {
         let formatter = NSNumberFormatter()
         formatter.numberStyle = .DecimalStyle
@@ -32,6 +36,7 @@ class DetailViewController: UIViewController {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
+        view.endEditing(true)
         
         item.name = nameField.text ?? ""
         item.serialNumber = serialField.text
@@ -41,5 +46,13 @@ class DetailViewController: UIViewController {
         else {
             item.valueInDollars = 0
         }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    @IBAction func backgroundTapped(sender: UITapGestureRecognizer) {
+        view.endEditing(true)
     }
 }
