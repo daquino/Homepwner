@@ -65,6 +65,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
     @IBAction func takePicture(sender: UIBarButtonItem) {
         let imagePicker = UIImagePickerController()
         
+        imagePicker.allowsEditing = true
         if UIImagePickerController.isSourceTypeAvailable(.Camera) {
             imagePicker.sourceType = .Camera
         }
@@ -76,7 +77,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let image = info[UIImagePickerControllerEditedImage] as! UIImage
         imageStore.setImage(image, forKey: item.itemKey)
         dismissViewControllerAnimated(true, completion: nil)
     }
