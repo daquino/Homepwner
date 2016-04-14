@@ -55,4 +55,11 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
     @IBAction func backgroundTapped(sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowDate" {
+            let dateViewController = segue.destinationViewController as! DateViewController
+            dateViewController.item = item
+        }
+    }
 }
